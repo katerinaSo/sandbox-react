@@ -6,6 +6,8 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 const style = {
   paper: {
@@ -21,7 +23,8 @@ export default ({
   items,
   category,
   onSelectItem,
-  item: { id, title = "Welcome!", description = "message goes here" }
+  item: { id, title = "Welcome!", description = "message goes here" },
+  onDelete
 }) => (
   <Grid container xs>
     <Grid item xs>
@@ -45,6 +48,14 @@ export default ({
                     }}
                   >
                     <ListItemText primary={title} />
+                    <ListItemSecondaryAction>
+                      <IconButton
+                        onClick={() => onDelete(id)}
+                        aria-label="Delete"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </ListItemSecondaryAction>
                   </ListItem>
                 ))}
               </List>

@@ -9,15 +9,20 @@ export default class App extends Component {
     item: {}
   };
   getItemsByCat() {
+    const initialCat = categories.reduce(
+      (catAccum, category) => ({
+        ...catAccum,
+        [category]: []
+      }),
+      {}
+    );
     return Object.entries(
       this.state.items.reduce((itemsAcc, item) => {
         const { category } = item;
 
-        itemsAcc[category] = itemsAcc[category]
-          ? [...itemsAcc[category], item]
-          : [item];
+        itemsAcc[category] = [...itemsAcc[category], item];
         return itemsAcc;
-      }, {})
+      }, initialCat)
     );
   }
   handleCatSelected = category => {
@@ -36,7 +41,11 @@ export default class App extends Component {
       items: [...items, item]
     }));
   };
-
+  handleItemDelete = id => {
+    this.setState(({ items }) => ({
+      items: items.filter(item => item.id !== id)
+    }));
+  };
   render() {
     const items = this.getItemsByCat();
     const { category, item } = this.state;
@@ -51,6 +60,7 @@ export default class App extends Component {
           items={items}
           category={category}
           onSelectItem={this.handleItemSelected}
+          onDelete={this.handleItemDelete}
         />
         <Footer
           category={category}
