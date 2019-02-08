@@ -17,34 +17,47 @@ const style = {
   }
 };
 
-export default ({ items }) => (
+export default ({
+  items,
+  category,
+  onSelectItem,
+  item: { id, title = "Welcome!", description = "message goes here" }
+}) => (
   <Grid container xs>
     <Grid item xs>
       <Paper style={style.paper}>
-        {items.map(([category, items]) => (
-          <Fragment>
-            <Typography
-              variant="headline"
-              style={{ textTransform: "capitalize" }}
-            >
-              {category}
-            </Typography>
-            <List component="nav">
-              {items.map(item => (
-                <ListItem button>
-                  <ListItemText primary={item.title} />
-                </ListItem>
-              ))}
-            </List>
-          </Fragment>
-        ))}
+        {items.map(([group, items]) =>
+          !category || category === group ? (
+            <Fragment key={group}>
+              <Typography
+                variant="headline"
+                style={{ textTransform: "capitalize" }}
+              >
+                {group}
+              </Typography>
+              <List component="nav">
+                {items.map(({ id, title }) => (
+                  <ListItem
+                    button
+                    key={id}
+                    onClick={() => {
+                      onSelectItem(id);
+                    }}
+                  >
+                    <ListItemText primary={title} />
+                  </ListItem>
+                ))}
+              </List>
+            </Fragment>
+          ) : null
+        )}
       </Paper>
     </Grid>
     <Grid item xs>
       <Paper style={style.paper}>
-        <Typography variant="display1">Welcome!</Typography>
+        <Typography variant="display1">{title}</Typography>
         <Typography variant="subheading" style={{ marginTop: 10 }}>
-          message goes here
+          {description}
         </Typography>
       </Paper>
     </Grid>

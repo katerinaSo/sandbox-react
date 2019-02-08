@@ -5,7 +5,8 @@ import { categories, items } from "../storeInfo";
 
 export default class App extends Component {
   state = {
-    items
+    items,
+    item: {}
   };
   getItemsByCat() {
     return Object.entries(
@@ -19,14 +20,35 @@ export default class App extends Component {
       }, {})
     );
   }
+  handleCatSelected = category => {
+    this.setState({
+      category
+    });
+  };
+
+  handleItemSelected = id => {
+    this.setState(({ items }) => ({
+      item: items.find(ex => ex.id === id)
+    }));
+  };
 
   render() {
     const items = this.getItemsByCat();
+    const { category, item } = this.state;
     return (
       <Fragment>
         <Header />
-        <Todos items={items} />
-        <Footer categories={categories} />
+        <Todos
+          item={item}
+          items={items}
+          category={category}
+          onSelectItem={this.handleItemSelected}
+        />
+        <Footer
+          category={category}
+          categories={categories}
+          onSelect={this.handleCatSelected}
+        />
       </Fragment>
     );
   }
