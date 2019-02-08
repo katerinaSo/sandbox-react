@@ -31,13 +31,21 @@ export default class App extends Component {
       item: items.find(ex => ex.id === id)
     }));
   };
+  handleItemCreated = item => {
+    this.setState(({ items }) => ({
+      items: [...items, item]
+    }));
+  };
 
   render() {
     const items = this.getItemsByCat();
     const { category, item } = this.state;
     return (
       <Fragment>
-        <Header />
+        <Header
+          categories={categories}
+          onItemCreated={this.handleItemCreated}
+        />
         <Todos
           item={item}
           items={items}

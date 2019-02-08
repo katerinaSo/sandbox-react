@@ -8,13 +8,13 @@ import Typography from "@material-ui/core/Typography";
 // import MenuIcon from "@material-ui/icons/Menu";
 import CreateDialog from "../Todos/CRUD/Create";
 
-export default props => (
+export default ({ categories, onItemCreated }) => (
   <AppBar position="static">
     <Toolbar>
       <Typography variant="headline" color="inherit" style={{ flex: 1 }}>
         Todos
       </Typography>
-      <CreateDialog />
+      <CreateDialog categories={categories} onCreate={onItemCreated} />
     </Toolbar>
   </AppBar>
 );
