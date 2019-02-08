@@ -8,7 +8,13 @@ import ListItemText from "@material-ui/core/ListItemText";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const style = {
-  paper: { padding: 20, marginTop: 10, marginBottom: 10 }
+  paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 300,
+    overflowY: "auto"
+  }
 };
 
 export default ({ items }) => (
@@ -35,7 +41,12 @@ export default ({ items }) => (
       </Paper>
     </Grid>
     <Grid item xs>
-      <Paper style={style.paper}>right</Paper>
+      <Paper style={style.paper}>
+        <Typography variant="display1">Welcome!</Typography>
+        <Typography variant="subheading" style={{ marginTop: 10 }}>
+          message goes here
+        </Typography>
+      </Paper>
     </Grid>
   </Grid>
 );
