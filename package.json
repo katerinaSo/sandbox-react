@@ -1,0 +1,24 @@
+{
+  "name": "xr3xkppx8w",
+  "version": "1.0.0",
+  "description": "first try",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@material-ui/core": "3.9.2",
+    "@material-ui/icons": "3.0.2",
+    "@material-ui/utils": "3.0.0-alpha.3",
+    "material-ui": "0.20.2",
+    "react": "16.8.0",
+    "react-dom": "16.8.0",
+    "react-scripts": "2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
+}
